@@ -1,0 +1,20 @@
+{
+    "name": "litellm-mcp-server",
+    "version": "1.0.0",
+    "description": "MCP server bridge for LiteLLM",
+    "main": "litellm-mcp-server.js",
+    "type": "module",
+    "scripts": {
+        "start": "node litellm-mcp-server.js"
+    },
+    "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+    },
+    "keywords": [
+        "mcp",
+        "litellm",
+        "llm"
+    ],
+    "author": "",
+    "license": "MIT"
+}
