@@ -5,7 +5,7 @@
     "main": "litellm-mcp-server.js",
     "type": "module",
     "bin": {
-        "litellm-mcp-server": "./litellm-mcp-server.js"
+        "litellm-mcp-server": "litellm-mcp-server.js"
     },
     "files": [
         "litellm-mcp-server.js"
