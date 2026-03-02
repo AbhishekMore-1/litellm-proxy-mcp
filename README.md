@@ -20,26 +20,19 @@ This MCP server provides the following tools:
 
 ## Setup
 
-### 1. Install Dependencies
+### 1. Configure Antigravity
 
-```bash
-npm install
-```
-
-### 2. Configure Antigravity
-
-Add the following to your Antigravity MCP configuration:
+Add the following to your Antigravity MCP configuration. This will use `npx` to fetch and run the latest version of the published package on-the-fly.
 
 ```json
 {
   "mcpServers": {
-    "sequential-thinking": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
-    },
     "litellm": {
-      "command": "node",
-      "args": ["/path-to-script/litellm-mcp-server.js"],
+      "command": "npx",
+      "args": [
+        "-y",
+        "litellm-mcp-server@latest"
+      ],
       "env": {
         "LITELLM_BASE_URL": "https://your-litellm-url",
         "LITELLM_API_KEY": "your-api-key-here"
@@ -49,11 +42,9 @@ Add the following to your Antigravity MCP configuration:
 }
 ```
 
-**Important:** Replace `/path-to-script/litellm-mcp-server.js` with the absolute path to where you saved the script.
+### 2. Set Your Secrets
 
-### 3. Set Your API Key
-
-Replace `your-api-key-here` in the configuration with your actual LiteLLM API key.
+Replace `your-litellm-url` and `your-api-key-here` in the configuration with your actual LiteLLM Base URL and API key.
 
 ## Usage Examples
 

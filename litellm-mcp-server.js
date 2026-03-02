@@ -442,6 +442,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     }
 });
 
+// Export server for testing
+export { server };
+
 // Start the server
 async function main() {
     const transport = new StdioServerTransport();
@@ -449,7 +452,23 @@ async function main() {
     console.error('LiteLLM MCP Server running on stdio');
 }
 
-main().catch((error) => {
-    console.error('Fatal error in main():', error);
-    process.exit(1);
-});
+import { fileURLToPath } from 'url';
+import fs from 'fs';
+
+const isMainModule = () => {
+    if (!process.argv[1]) return false;
+    try {
+        const scriptPath = fs.realpathSync(process.argv[1]);
+        const modulePath = fileURLToPath(import.meta.url);
+        return scriptPath === modulePath;
+    } catch {
+        return false;
+    }
+};
+
+if (isMainModule()) {
+    main().catch((error) => {
+        console.error('Fatal error in main():', error);
+        process.exit(1);
+    });
+}

@@ -36,12 +36,20 @@ The server currently implements the following tools, mapping directly to LiteLLM
 
 ## Testing Locally
 
-To check for syntax errors before committing changes:
+We use the native `node:test` runner. To run the test suite and verify the MCP tool registrations:
 ```bash
-node -c litellm-mcp-server.js
+npm test
 ```
 
 To run the server manually, you need to provide environment variables:
 ```bash
-LITELLM_BASE_URL="https://your-litellm-url.com" LITELLM_API_KEY="sk-..." node litellm-mcp-server.js
+LITELLM_BASE_URL="https://your-litellm-url.com" LITELLM_API_KEY="sk-..." npx litellm-mcp-server
 ```
+
+## Publishing
+
+This package is published to the NPM registry to allow for seamless integration with MCP clients using `npx -y litellm-mcp-server@latest`.
+
+1. **Version Bump**: Increment the `"version"` field in `package.json` according to semver (e.g., `"1.0.2"`). 
+2. **Git Release**: Tag the commit or create a new Release in GitHub.
+3. **Automated Publishing**: The GitHub Actions workflow (`.github/workflows/npm-publish.yml`) will automatically run tests and publish the package to NPM publicly with Provenance enabled. Do not publish locally unless absolutely necessary, as it bypasses the provenance guarantee.
